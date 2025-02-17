@@ -2,7 +2,7 @@ const Venda = require('../models/venda');
 const Ingresso = require('../models/ingresso');
 const sequelize = require("sequelize")
 
-// Realizar uma venda de ingressos
+
 exports.CompraIngresso =  async (req, res) => {
   try {
     const { venda } = req.body; 
@@ -28,14 +28,14 @@ exports.CompraIngresso =  async (req, res) => {
         });
       }
 
-      // Atualizar o estoque do ingresso
+      
       ingresso.quantidadeDisponivel -= item.quantidade;
       await ingresso.save();
 
       const totalPrice = ingresso.preco * item.quantidade;
       totalCost += totalPrice;
 
-      // Criar o registro de compra
+      
       const newVenda = await Venda.create({
         userId,
         IngressoId: item.IngressoId,
