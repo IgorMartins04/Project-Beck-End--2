@@ -1,0 +1,63 @@
+Criar usuario :
+localhost:3000/authenticator/register
+
+{
+  "nome":"",
+  "email":"",
+  "senha":"",
+  "regra":""
+  
+}
+
+
+Login de usuario:
+localhost:3000/authenticator/login
+
+{
+  "email":"",
+  "senha":""
+}
+=======================================================
+  
+Criar ingresso:
+localhost:3000/ingresso
+
+{
+  "nome:"",
+  "preco":,
+  "quantidadeDisponivel":
+}
+
+Comprar ingresso:
+localhost:3000/vendas
+
+{
+  "venda": [
+    {
+      "IngressoId": 1,
+      "quantidade": 2
+    },
+      {
+        "IngressoId": 3,
+        "quantidade": 1
+      }
+    ]
+}
+
+Atualizar ingresso:
+PUT localhost:3000/ingresso/id
+  {
+  "nome": "Novo Nome do Ingresso",
+  "preco": 150.00,
+  "quantidadeDisponivel": 50
+}
+
+Deletar ingresso:
+Delete localhost:3000/ingresso/id
+
+Vizualizar o historico de compras:
+localhost:3000/history
+
+
+OBS: Não consegui exibir os ingressos no template, mas no postman você irá conseguir observar.
+  
