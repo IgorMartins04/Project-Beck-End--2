@@ -15,12 +15,12 @@ const isAdmin = require('../middleware/admMiddleware');
 
 const router = express.Router();
 
-router.post('/', authMiddleware, adminMiddleware, isAdmin, createIngresso);  // Cria um ingresso 
-router.get('/', getAllIngresso); // Mostra todos os ingressos 
-router.get('/:id', getIngressoById); // Busca um ingresso por id 
-router.put('/:id', authMiddleware, adminMiddleware, isAdmin, updateIngresso);  // Altera um ingresso por id 
-router.delete('/:id', authMiddleware, adminMiddleware, isAdmin, deleteIngresso);  // Deleta um ingresso por id 
+router.post('/', authMiddleware, adminMiddleware, isAdmin, createIngresso);  
+router.get('/', getAllIngresso); 
+router.get('/:id', getIngressoById); 
+router.put('/:id', authMiddleware, adminMiddleware, isAdmin, updateIngresso);  
+router.delete('/:id', authMiddleware, adminMiddleware, isAdmin, deleteIngresso);  
 
-router.get('/history', history); // Exibe o historico 
+router.get('/history', history); 
 
 module.exports = router;
