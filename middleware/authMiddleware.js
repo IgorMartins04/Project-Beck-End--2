@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 
 const authMiddleware = (req, res, next) => {
-  const token = req.cookies.token || req.headers['authorization']?.split(' ')[1]; // Pega o token do cookie ou da autorização
+  const token = req.cookies.token || req.headers['authorization']?.split(' ')[1]; 
 
   if (!token) {
     return res.status(401).json({ error: 'Token não encontrado' });
@@ -13,8 +13,8 @@ const authMiddleware = (req, res, next) => {
       return res.status(401).json({ error: 'Token inválido' });
     }
     
-    req.user = decoded; // Adiciona os dados do usuário ao request
-    next(); // Continua para a próxima função ou rota
+    req.user = decoded; 
+    next(); 
   });
 };
 
