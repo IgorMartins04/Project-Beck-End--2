@@ -57,27 +57,27 @@ app.get("/", (req, res)=>{
 
 app.get("/history", authMiddleware, async (req, res) => {
   try {
-    const userId = req.user.id; // Obtém o ID do usuário autenticado
+    const userId = req.user.id; 
     const vendas = await Venda.findAll({
-      where: { userId }, // Busca as compras do usuário
-      include: { model: Ingresso, attributes: ["nome", "preco"] }, // Inclui dados do ingresso
+      where: { userId }, 
+      include: { model: Ingresso, attributes: ["nome", "preco"] }, 
     });
 
     let args = {
       titulo: "Histórico",
       sub_principal: "Meus Ingressos",
       vendas: vendas.map((Venda) => ({
-        id: Venda.id, // Corrigido para Venda
-        quantidade: Venda.quantidade, // Corrigido para Venda
-        totalPrice: Venda.PrecoTotal, // Corrigido para Venda
+        id: Venda.id, 
+        quantidade: Venda.quantidade, 
+        totalPrice: Venda.PrecoTotal, 
         Ingresso: {
-          nome: Venda.Ingresso.nome, // Corrigido para Venda.Ingresso.nome
-          preco: Venda.Ingresso.preco, // Corrigido para Venda.Ingresso.preco
+          nome: Venda.Ingresso.nome, 
+          preco: Venda.Ingresso.preco, 
         },
       })),
     };
 
-    res.render("history", args); // Renderiza o template do histórico
+    res.render("history", args); 
   } catch (error) {
     console.error(error);
     res.status(500).send("Erro ao carregar histórico");
@@ -86,7 +86,7 @@ app.get("/history", authMiddleware, async (req, res) => {
 
 
 
-// Sincronizar o banco de dados
+
 const PORT = process.env.PORT || 3000;
 sequelize.sync()
   .then(() => console.log('Banco de dados sincronizado'))
