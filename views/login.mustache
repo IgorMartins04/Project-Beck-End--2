@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        /* Reseta algumas propriedades padrão */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Cor de fundo clara e centralização */
+        
         body {
             background-color: #f7f7f7;
             font-family: Arial, sans-serif;
@@ -23,14 +23,14 @@
             text-align: center;
         }
 
-        /* Estilo do título */
+        
         h1 {
             font-size: 2.5rem; /* Tamanho do título aumentado para se destacar */
             color: #333;
             margin-bottom: 1rem;
         }
 
-        /* Estilizando o formulário */
+        
         form {
             background-color: #ffffff;
             padding: 2rem; /* Padding confortável para o conteúdo */
@@ -41,7 +41,7 @@
             text-align: left;
         }
 
-        /* Estilo dos rótulos dos campos */
+        
         label {
             font-size: 1rem; /* Tamanho ajustado para não ficar muito grande */
             color: #555;
@@ -49,7 +49,7 @@
             display: block;
         }
 
-        /* Estilo dos campos de entrada */
+        
         input[type="email"], input[type="password"] {
             width: 100%;
             padding: 0.75rem; /* Padding adequado para conforto */
@@ -60,7 +60,7 @@
             background-color: #f9f9f9;
         }
 
-        /* Estilo do botão */
+       
         button {
             background-color: #4CAF50;
             color: white;
@@ -81,13 +81,13 @@
             background-color: #397039;
         }
 
-        /* Foco nos campos de entrada */
+        
         input[type="email"]:focus, input[type="password"]:focus {
             outline: none;
             border-color: #4CAF50;
         }
 
-        /* Estilo da mensagem de erro */
+        
         #error {
             color: red;
             margin-top: 1rem;
@@ -118,7 +118,7 @@
             const senha = document.getElementById("senha").value;
 
             try {
-                // Enviar os dados de login para a API
+                
                 const response = await fetch("/authenticator/login", {
                     method: "POST",
                     headers: {
@@ -133,11 +133,11 @@
                     // Redireciona para o histórico passando o token como parâmetro
                     window.location.href = "/history?token=" + encodeURIComponent(data.token);
                 } else {
-                    // Exibe a mensagem de erro, se houver
+                    
                     document.getElementById("error").textContent = data.mensagem || "Erro ao fazer login.";
                 }
             } catch (error) {
-                // Caso ocorra algum erro na requisição
+                
                 document.getElementById("error").textContent = "Erro: " + error.message;
             }
         });
