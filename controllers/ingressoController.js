@@ -2,7 +2,7 @@ const IngressoModel = require('../models/ingresso');
 const sequelize = require("sequelize")
 
 
-// Criar um novo tipo de ingresso
+
 exports.createIngresso = async (req, res) => {
 
   const { nome, preco, quantidadeDisponivel } = req.body;
@@ -14,7 +14,7 @@ exports.createIngresso = async (req, res) => {
   }
 };
 
-// Listar todos os tipos de ingressos
+
 exports.getAllIngresso =  async (req, res) => {
   try {
     const ingresso = await IngressoModel.findAll();
@@ -24,7 +24,7 @@ exports.getAllIngresso =  async (req, res) => {
   }
 };
 
-// Buscar um tipo de ingresso por ID
+
 exports.getIngressoById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -36,7 +36,7 @@ exports.getIngressoById = async (req, res) => {
   }
 };
 
-// Atualizar um tipo de ingresso
+
 exports.updateIngresso = async (req, res) => {
   const { id } = req.params;
   const { nome, preco, quantidadeDisponivel } = req.body;
@@ -51,7 +51,7 @@ exports.updateIngresso = async (req, res) => {
   }
 };
 
-// Deletar um tipo de ingresso
+
 exports.deleteIngresso = async (req, res) => {
   const { id } = req.params;
   try {
