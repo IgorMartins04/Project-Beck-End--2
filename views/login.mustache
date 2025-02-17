@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Reseta algumas propriedades padrão */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Cor de fundo clara e centralização */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Estilo do título */
+        h1 {
+            font-size: 2.5rem; /* Tamanho do título aumentado para se destacar */
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilizando o formulário */
+        form {
+            background-color: #ffffff;
+            padding: 2rem; /* Padding confortável para o conteúdo */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; /* Largura máxima ajustada */
+            text-align: left;
+        }
+
+        /* Estilo dos rótulos dos campos */
+        label {
+            font-size: 1rem; /* Tamanho ajustado para não ficar muito grande */
+            color: #555;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Estilo dos campos de entrada */
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 0.75rem; /* Padding adequado para conforto */
+            margin-bottom: 1.25rem; /* Espaço entre os campos */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem; /* Tamanho de texto ajustado */
+            background-color: #f9f9f9;
+        }
+
+        /* Estilo do botão */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.75rem; /* Padding confortável */
+            width: 100%;
+            border-radius: 4px;
+            font-size: 1rem; /* Tamanho adequado */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #397039;
+        }
+
+        /* Foco nos campos de entrada */
+        input[type="email"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        /* Estilo da mensagem de erro */
+        #error {
+            color: red;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Login</h1>
+        <form id="loginForm" action="/authenticator/login" method="POST">
+            <label for="email">{{label_email}}</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="senha">{{label_senha}}</label>
+            <input type="password" id="senha" name="senha" required><br>
+
+            <button type="submit">{{button}}</button>
+        </form>
+        <!-- Exibir erros, caso necessário -->
+        <div id="error"></div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const senha = document.getElementById("senha").value;
+
+            try {
+                // Enviar os dados de login para a API
+                const response = await fetch("/authenticator/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Redireciona para o histórico passando o token como parâmetro
+                    window.location.href = "/history?token=" + encodeURIComponent(data.token);
+                } else {
+                    // Exibe a mensagem de erro, se houver
+                    document.getElementById("error").textContent = data.mensagem || "Erro ao fazer login.";
+                }
+            } catch (error) {
+                // Caso ocorra algum erro na requisição
+                document.getElementById("error").textContent = "Erro: " + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
