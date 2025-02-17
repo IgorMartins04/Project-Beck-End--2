@@ -33,12 +33,8 @@ exports.loginUser = async (req, res) => {
     );
 
     
+    return res.json({ message: 'Autenticado com sucesso', token }); 
 
-    // Armazene o token no frontend (se necessário, em um cookie ou localStorage)
-    return res.json({ message: 'Autenticado com sucesso', token }); // Não faça mais nada aqui
-
-    // O redirecionamento deve ser feito no frontend
-    // res.redirect('/history'); // Remover isso daqui
   } catch (error) {
     res.status(500).json({ mensagem: 'Erro no login de usuario', error: error.message });
   }
