@@ -124,7 +124,6 @@ npm start
 [LinkedIn](https://linkedin.com/in/luiz-marçon)  
 UTFPR – Tecnologia em Análise e Desenvolvimento de Sistemas
 
-*Igor Martins*
-
+*Igor Martins*  
 [LinkedIn](https://www.linkedin.com/in/igor-martins-127b2828b/)  
 UTFPR – Tecnologia em Análise e Desenvolvimento de Sistemas
